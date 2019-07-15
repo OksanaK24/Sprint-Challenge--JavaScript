@@ -86,11 +86,10 @@ console.log(contactInfo);
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
 const uni = [];
-for (let i=0; i<graduates.length; i++){
-  if (graduates[i].university.includes("uni")){
-    graduates[i].university;
+for (let i = 0; i < graduates.length; i++) {
+  if (graduates[i].university.toLowerCase().includes("uni")) {
+    uni.push(graduates[i].university);
   }
- uni.push(graduates[i].university);
 }
 console.log(uni);
 
@@ -117,11 +116,9 @@ The zoo wants to display both the scientific name and the animal name in front o
 
 */
 const animalNames = [];
-// animalNames.forEach(newArr);
-// let newArr = function(animal_name, scientific_name){
-//   this.name: animal_name,
-//   this.name: scientific_name;
-// }
+zooAnimals.forEach(animal =>{
+  animalNames.push(`Name ${animal.animal_name} Scientific ${animal.scientific_name}.`);
+  });
 console.log(animalNames);
 
 /* Request 2: .map()    
@@ -131,9 +128,9 @@ The zoos need a list of all their animal's names (names only, not scientific) co
 */
 
 const lowerCase = [];
-// let   lowerCase= zooAnimals.map((animal_name) => {
-//   animal_name.lowerCase;
-// });
+zooAnimals.map((animal) => {
+  lowerCase.push(`${animal.animal_name.toLowerCase()}`);
+});
 console.log(lowerCase); 
 
 /* Request 3: .filter() 
@@ -141,7 +138,7 @@ console.log(lowerCase);
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-const lowerPopulation = [];
+const lowerPopulation = zooAnimals.filter(zooAnimals => zooAnimals.population < 5);
 console.log(lowerPopulation);
 
 /* Request 4: .reduce() 
@@ -149,7 +146,10 @@ console.log(lowerPopulation);
 The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = 0;
+const populationTotal = zooAnimals.reduce ((total, zooAnimals) => {
+  return total += zooAnimals.population;
+}, 0)
+
 console.log(populationTotal);
 
 
